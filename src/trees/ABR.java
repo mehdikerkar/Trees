@@ -1,5 +1,8 @@
 package trees;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class ABR {
 	private Node racine;
 	
@@ -30,6 +33,37 @@ public class ABR {
 			}
 	}
 	
+	public ABR toABR(ArrayList<Integer> l) {
+		if(l.isEmpty()) {
+			return null;
+		}else {
+			ABR A = new ABR(new Node(l.get(0)));
+			for(int i = 1; i<l.size() ; i++)
+				A.Insert(new Node(l.get(i)));
+			return A;
+		}
+			
+	}
+	
+	public LinkedList<Integer> sort_C(){
+		LinkedList<Integer> l = new LinkedList<>();
+		Node x = Min(this.getRacine());
+		while(x!=null) {
+			l.add(x.getVal());
+			x = Successeur(x);
+		}
+		return l;
+	}
+	
+	public LinkedList<Integer> sort_D(){
+		LinkedList<Integer> l = new LinkedList<>();
+		Node x = Min(this.getRacine());
+		while(x!=null) {
+			l.addFirst(x.getVal());
+			x = Successeur(x);
+		}
+		return l;
+	}
 	
 	public static Node Min(Node A) {
 		if(A==null || A.getLeftC()==null)

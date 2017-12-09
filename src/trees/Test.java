@@ -14,6 +14,8 @@ public class Test {
 		arn.Insert(new Node(5));
 		arn.Insert(new Node(4));
 		System.out.println(arn.getRacine());
+		System.out.println(arn.sort_C());
+		System.out.println(arn.sort_D());
 		
 	}
 }

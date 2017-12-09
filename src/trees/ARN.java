@@ -1,5 +1,6 @@
 package trees;
 
+import java.util.ArrayList;
 
 public class ARN extends ABR{
 
@@ -85,5 +86,16 @@ public class ARN extends ABR{
 		this.getRacine().setColor(Color.black);
 	}
 	
+	public ARN toABR(ArrayList<Integer> l) {
+		if(l.isEmpty()) {
+			return null;
+		}else {
+			ARN A = new ARN(new Node(l.get(0)));
+			for(int i = 1; i<l.size() ; i++)
+				A.Insert(new Node(l.get(i)));
+			return A;
+		}
+			
+	}
 }
 
