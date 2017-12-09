@@ -8,7 +8,7 @@ public class ABR {
 		racine = r;
 	}
 	
-	public void ABR_Insert(Node n) {
+	public void Insert(Node n) {
 		Node x = racine;
 		Node y = null;//y parent of x
 	
@@ -28,42 +28,39 @@ public class ABR {
 				 else
 					 y.setRightC(n);
 			}
-				 
-
-		
 	}
 	
 	
-	public static Node ABR_Min(Node A) {
+	public static Node Min(Node A) {
 		if(A==null || A.getLeftC()==null)
 			return A;
 		else
-			return ABR_Min(A.getLeftC());
+			return Min(A.getLeftC());
 	}
 	
-	public static Node ABR_Max(Node A) {
+	public static Node Max(Node A) {
 		if(A==null || A.getRightC()==null)
 			return A;
 		else
-			return ABR_Max(A.getRightC());
+			return Max(A.getRightC());
 	}
 
-	public static Node ABR_Recherche(Node A, int val){
+	public static Node Recherche(Node A, int val){
 		if(A==null || A.getVal()==val)
 			return A;
 		else {
 			if (A.getVal()<val)
-				return ABR_Recherche(A.getRightC(), val);
+				return Recherche(A.getRightC(), val);
 			else 
-				return ABR_Recherche(A.getLeftC(), val);
+				return Recherche(A.getLeftC(), val);
 		}
 		
 	}
 
-	public static Node ABR_Successeur(Node A) {
+	public static Node Successeur(Node A) {
 		Node y;
 		if(A.getRightC()!=null)
-			return ABR_Min(A.getRightC());
+			return Min(A.getRightC());
 		y=A.getParent();
 		while(y!=null && A==y.getRightC()) {
 			A=y;

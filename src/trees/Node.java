@@ -1,20 +1,34 @@
 package trees;
 
+
 public class Node {
 	
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_RESET = "\u001B[0m";
+	
+	private Color color;
 	private int val;
 	private Object data;   
 	private Node leftC;
 	private Node rightC;
 	private Node parent;
 	
-	Node(int val) {
+	public Node(int val) {
 		   this.val=val;
 		   this.leftC=null;
 		   this.rightC=null;
 		   this.parent=null;
-		};
+		   this.color=Color.red;
+	}
 		
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	public Node getLeftC() {
 		return leftC;
 	}
@@ -43,6 +57,18 @@ public class Node {
 		this.val = val;
 	}
 
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data){
+		this.data = data;
+	}
+
+	public int getVal() {
+		return val;
+	}
+	
 	public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder sb) {
 	    if(rightC!=null) {
 	        rightC.toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, sb);
@@ -59,16 +85,5 @@ public class Node {
 	    return this.toString(new StringBuilder(), true, new StringBuilder()).toString();
 	}
 	
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data){
-		this.data = data;
-	}
-
-	public int getVal() {
-		return val;
-	}
 	
 }
