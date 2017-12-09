@@ -8,113 +8,67 @@ public class Node {
 	private Node rightC;
 	private Node parent;
 	
-	 Node(int val) {
+	Node(int val) {
 		   this.val=val;
 		   this.leftC=null;
 		   this.rightC=null;
 		   this.parent=null;
 		};
 		
-	static void ABR_Insert(Node A, Node n) {
-		Node x = A;
-		Node y = null;//y parent of x
-	
-			while(x!=null) {
-				y=x;
-				if(n.val<x.val) 
-					x.leftC=n;
-				else 
-					x.rightC=n;
-			}	
-			n.parent=y; 
-			if (y==null) 
-				A=n;
-			else {
-				if (n.val<y.val)
-					 y.leftC=n;
-				 else
-					 y.rightC=n;
-			}
-				 
-
-		
-	}
-	
-	
-	static Node ABR_Min(Node A) {
-		if(A==null || A.leftC==null)
-			return A;
-		else
-			return ABR_Min(A.leftC);
-	}
-	
-	static Node ABR_Max(Node A) {
-		if(A==null || A.rightC==null)
-			return A;
-		else
-			return ABR_Max(A.rightC);
+	public Node getLeftC() {
+		return leftC;
 	}
 
-	static Node ABR_Recherche(Node A, int val){
-		if(A==null || A.val==val)
-			return A;
-		else {
-			if (A.val<val)
-				return ABR_Recherche(A.leftC, val);
-			else 
-				return ABR_Recherche(A.rightC, val);
-		}
-		
+	public void setLeftC(Node leftC) {
+		this.leftC = leftC;
 	}
 
-	static Node ABR_Successeur(Node A) {
-		Node y;
-		if(A.rightC!=null)
-			return ABR_Min(A.rightC);
-		y=A.parent;
-		while(y!=null && A==y.rightC) {
-			A=y;
-			y=A.parent;
-		}
-		return y;
+	public Node getRightC() {
+		return rightC;
 	}
 
-	static void ABR_Print(Node A) {
-		if (A!=null) {
-			System.out.println("("+A.val+")");
-			ABR_Print(A.rightC);
-			ABR_Print(A.leftC);
-		}
-		else {System.out.println("( )");}
-	}
-	
-	public static void main (String[] args) {
-		Node tete = new Node(23);
-		Node a = new Node(5);
-		Node b = new Node(30);
-		Node c = new Node(24);
-		Node d = new Node(20);
-		Node e = new Node(15);
-		System.out.println("DEBUT");
-		
-		ABR_Insert(tete, a);
-		ABR_Insert(tete, b);
-		ABR_Insert(tete, c);
-		ABR_Insert(tete, d);
-		ABR_Insert(tete, e);
-		System.out.println("FIN Insertion");
-		ABR_Print(tete);
-		System.out.println("FIN");
-		
-		
+	public void setRightC(Node rightC) {
+		this.rightC = rightC;
 	}
 
+	public Node getParent() {
+		return parent;
+	}
+
+	public void setParent(Node parent) {
+		this.parent = parent;
+	}
+
+	public void setVal(int val) {
+		this.val = val;
+	}
+
+	public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder sb) {
+	    if(rightC!=null) {
+	        rightC.toString(new StringBuilder().append(prefix).append(isTail ? "│   " : "    "), false, sb);
+	    }
+	    sb.append(prefix).append(isTail ? "└── " : "┌── ").append(val).append("\n");
+	    if(leftC!=null) {
+	        leftC.toString(new StringBuilder().append(prefix).append(isTail ? "    " : "│   "), true, sb);
+	    }
+	    return sb;
+	}
+
+	@Override
+	public String toString() {
+	    return this.toString(new StringBuilder(), true, new StringBuilder()).toString();
+	}
 	
 	public Object getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(Object data){
 		this.data = data;
 	}
+
+	public int getVal() {
+		return val;
+	}
+	
 }
